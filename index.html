@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Sample</title>
+</head>
+<body>
+<div style="background-color: antiquewhite">
+<canvas id="canvas" bgColor="#eeeeee" width="600" height="600" style="background-color: #eee">
+    no canvas
+</canvas>
+</div>
+</body>
+<script>
+    const canvas = window.document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const img = new Image(100, 100);
+    img.src = "imgs/char_29.png";
+    // document.body.appendChild(img);
+    ctx.drawImage(img, 0, 0, 400, 400);
+    const imgData = ctx.getImageData(0, 0, 400, 400);
+    console.log(imgData.data);
+
+
+</script>
+</html>
