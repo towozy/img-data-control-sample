@@ -16,10 +16,20 @@
     const ctx = canvas.getContext("2d");
     const img = new Image(100, 100);
     img.src = "imgs/char_29.png";
-    // document.body.appendChild(img);
+    document.body.appendChild(img);
     ctx.drawImage(img, 0, 0, 400, 400);
     const imgData = ctx.getImageData(0, 0, 400, 400);
     console.log(imgData.data);
+
+    const imgDataArr = imgData.data;
+    for (let i = 3; i < imgDataArr.length;  i += 4) {
+        const data = imgDataArr[i];
+        if (data !== 0) {
+        	imgDataArr[i] = 30;
+        }
+    }
+
+    ctx.putImageData(imgData, 0, 0);
 
 
 </script>
