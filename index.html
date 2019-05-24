@@ -5,21 +5,23 @@
     <title>Sample</title>
 </head>
 <body>
-<div style="background-color: antiquewhite">
-<canvas id="canvas" bgColor="#eeeeee" width="600" height="600" style="background-color: #eee">
+<h3>Canvas area</h3>
+<canvas id="canvas" bgColor="#eeeeee" width="600" height="450" style="background-color: #eee">
     no canvas
 </canvas>
-</div>
+
+<h3 style="margin-top: 30px">Original image</h3>
 </body>
 <script>
     const canvas = window.document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
-    const img = new Image(100, 100);
+    const img = new Image(400, 400);
     img.src = "imgs/char_29.png";
+    img.style = "border: #ccc solid 1px";
     document.body.appendChild(img);
     ctx.drawImage(img, 0, 0, 400, 400);
     const imgData = ctx.getImageData(0, 0, 400, 400);
-    console.log(imgData.data);
+
 
     const txtColor = [255, 160, 80];
     const bgColor = [80, 160, 255];
