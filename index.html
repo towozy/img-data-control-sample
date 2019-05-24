@@ -24,11 +24,16 @@
     const imgDataArr = imgData.data;
     for (let i = 3; i < imgDataArr.length;  i += 4) {
         const data = imgDataArr[i];
-        if (data !== 0) {
+        if (data === 0) {
+			imgDataArr[i - 3] = 0;
+			imgDataArr[i - 2] = 0;
+			imgDataArr[i - 1] = 255;
+        	imgDataArr[i] = 255;
+        } else {
 			imgDataArr[i - 3] = 255;
 			imgDataArr[i - 2] = 0;
 			imgDataArr[i - 1] = 0;
-        	// imgDataArr[i] = 255;
+			// imgDataArr[i] = 255;
         }
     }
 
