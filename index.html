@@ -21,19 +21,27 @@
     const imgData = ctx.getImageData(0, 0, 400, 400);
     console.log(imgData.data);
 
+    const txtColor = [255, 0, 0];
+    const bgColor = [0, 0, 255];
+
     const imgDataArr = imgData.data;
     for (let i = 3; i < imgDataArr.length;  i += 4) {
         const data = imgDataArr[i];
-        if (data === 0) {
-			imgDataArr[i - 3] = 0;
-			imgDataArr[i - 2] = 0;
-			imgDataArr[i - 1] = 255;
-        	imgDataArr[i] = 255;
+        const alpha = data / 255;
+		imgDataArr[i] = 255;
+
+        if (alpha === 0) {
+			imgDataArr[i - 3] = bgColor[0];
+			imgDataArr[i - 2] = bgColor[1];
+			imgDataArr[i - 1] = bgColor[2];
+        } else if (alpha === 1) {
+			imgDataArr[i - 3] = txtColor[0];
+			imgDataArr[i - 2] = txtColor[1];
+			imgDataArr[i - 1] = txtColor[2];
         } else {
-			imgDataArr[i - 3] = 255;
-			imgDataArr[i - 2] = 0;
-			imgDataArr[i - 1] = 0;
-			// imgDataArr[i] = 255;
+			imgDataArr[i - 3] = bgColor[0] + (txtColor[0] - bgColor[0]) * alpha;
+			imgDataArr[i - 2] = bgColor[1] + (txtColor[1] - bgColor[1]) * alpha;
+			imgDataArr[i - 1] = bgColor[2] + (txtColor[2] - bgColor[2]) * alpha;
         }
     }
 
